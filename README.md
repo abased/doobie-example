@@ -3,12 +3,16 @@
 This project is to represent that intellij cannot infer the dynamic type from an implicit conversion in doobie. 
 
 
-```/greylock-service/src/main/scala/com/abased/example/IntellijExample.scala```
+```
+/greylock-service/src/main/scala/com/abased/example/IntellijExample.scala
+```
 
 
 There are screenshots in 
 
-```/greylock-service/src/main/resources```
+```
+/greylock-service/src/main/resources
+```
 
 Showing what is red 
 
