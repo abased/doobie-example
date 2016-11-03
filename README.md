@@ -1,7 +1,7 @@
 #doobie example project 
 
 This project is to represent that intellij cannot infer the dynamic type from an implicit conversion in doobie. 
-See 
+
 
 ```/greylock-service/src/main/scala/com/abased/example/IntellijExample.scala```
 
