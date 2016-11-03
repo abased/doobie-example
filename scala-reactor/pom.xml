@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <artifactId>parent-reactor-project</artifactId>
+        <groupId>com.abased.example</groupId>
+        <version>1.1.0-SNAPSHOT</version>
+        <relativePath>../parent-reactor/pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <name>scala-reactor-project</name>
+
+    <artifactId>scala-reactor-project</artifactId>
+    <version>1.1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <sourceDirectory>src/main/scala</sourceDirectory>
+        <testSourceDirectory>src/test/scala</testSourceDirectory>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>scala-maven-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>testCompile</goal>
+                        </goals>
+                        <configuration>
+                            <args>
+                                <arg>-deprecation</arg>
+                                <arg>-encoding</arg>
+                                <arg>UTF-8</arg>
+                                <arg>-feature</arg>
+                                <arg>-language:existentials</arg>
+                                <arg>-language:higherKinds</arg>
+                                <arg>-language:implicitConversions</arg>
+                                <arg>-unchecked</arg>
+                                <arg>-Xlint</arg>
+                                <arg>-Xfuture</arg>
+                                <arg>-Yno-adapted-args</arg>
+                                <arg>-Ywarn-dead-code</arg>
+                                <arg>-Ywarn-numeric-widen</arg>
+                                <arg>-Ywarn-value-discard</arg>
+                                <!-- @TODO - kbrumer - maybe pull this back ???? -->
+                                <!--<arg>-Ywarn-unused-import</arg>-->
+                                <arg>
+                                    ${project.build.directory}/.scala_dependencies
+                                </arg>
+
+                                <!-- ONLY REAL WIZARDS TREAD HERE -->
+                                <arg>-Xfatal-warnings</arg>
+                            </args>
+                            <scalaVersion>${scala.version}</scalaVersion>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <recompileMode>incremental</recompileMode>
+                    <jvmArgs>
+                        <jvmArg>-Xss2m</jvmArg>
+                    </jvmArgs>
+                    <recompileMode>incremental</recompileMode>
+                    <useZincServer>true</useZincServer>
+                    <analysisCacheFile>
+                        ${project.build.directory}/analysis-cache-file
+                    </analysisCacheFile>
+                    <testAnalysisCacheFile>
+                        ${project.build.directory}/test-analysis-cache-file
+                    </testAnalysisCacheFile>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

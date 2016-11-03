@@ -1,0 +1,42 @@
+# IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Eclipse
+.settings
+
+# play-maven-plugin
+lib/
+
+# Emacs
+*~
+
+# Output Folders
+target/
+*.pyc
+
+# Log Files
+*.log
+
+# MacOSX
+.DS_Store
+/.project
+
+# Node
+node_modules
+
+# Bundle is produced
+pptx-parent/pptx-service/src/main/resources/bundle.js
+
+# Uploads for VMS
+tools-parent/virtual-images/src/main/resources/demovms/software/*.zip
+tools-parent/virtual-images/src/main/resources/demovms/software/*.rpm
+
+# Rogue data directories
+graph-parent/graph-common/data/
+integration-test-parent/core-services-integration-test/data/
+
+# logback.xml files
+import-parent/import-minimal/src/main/resources/logback.xml

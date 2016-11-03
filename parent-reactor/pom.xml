@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <name>parent-reactor-project</name>
+
+    <groupId>com.abased.example</groupId>
+    <artifactId>parent-reactor-project</artifactId>
+    <version>1.1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <properties>
+        <scala.version>2.11.8</scala.version>
+        <scala.short.version>2.11</scala.short.version>
+        <scala-lang.modules.version>1.0.4</scala-lang.modules.version>
+        <!-- THIRD PARTY ENTANGLEMENT (spooky!) -->
+        <!-- These projects have very close relationship dependencies together -->
+        <doobie.version>0.3.0</doobie.version>
+        <circe.version>0.5.1</circe.version>
+        <http4s.version>0.14.10a</http4s.version>
+        <scalaz.version>7.2.6</scalaz.version>
+        <scalaz.stream.version>0.8.4a</scalaz.stream.version>
+        <shapeless.version>2.3.2</shapeless.version>
+
+        <!-- THIRD PARTY DEPENDENCIES -->
+
+
+        <build.number>1</build.number>
+        <build.timestamp>${maven.build.timestamp}</build.timestamp>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.assembly.plugin.version>2.2.2</maven.assembly.plugin.version>
+        <maven.jar.plugin.version>2.3.1</maven.jar.plugin.version>
+        <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <encoding>UTF-8</encoding>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- SCALA -->
+            <dependency>
+                <groupId>org.scala-lang</groupId>
+                <artifactId>scala-library</artifactId>
+                <version>${scala.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.scala-lang</groupId>
+                <artifactId>scala-reflect</artifactId>
+                <version>${scala.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.scala-lang</groupId>
+                <artifactId>scala-compiler</artifactId>
+                <version>${scala.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.scala-lang.modules</groupId>
+                <artifactId>scala-parser-combinators_${scala.short.version}</artifactId>
+                <version>${scala-lang.modules.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.scala-lang</groupId>
+                        <artifactId>scala-library</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.scala-lang.modules</groupId>
+                <artifactId>scala-xml_${scala.short.version}</artifactId>
+                <version>${scala-lang.modules.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.scala-lang</groupId>
+                        <artifactId>scala-library</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+
+
+
+            <!-- THIRD PARTY DEPENDENCIES -->
+
+
+            <!-- DOOBIE -->
+            <dependency>
+                <groupId>org.tpolecat</groupId>
+                <artifactId>doobie-core_${scala.short.version}</artifactId>
+                <version>${doobie.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.scala-lang</groupId>
+                        <artifactId>scala-library</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>com.chuusai</groupId>
+                        <artifactId>shapeless_${scala.short.version}</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.scalaz.stream</groupId>
+                        <artifactId>scalaz-stream_${scala.short.version}</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.scalaz</groupId>
+                        <artifactId>scalaz-core_${scala.short.version}</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.scalaz</groupId>
+                        <artifactId>scalaz-effect_${scala.short.version}</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.scalaz</groupId>
+                        <artifactId>scalaz-effect_${scala.short.version}</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.tpolecat</groupId>
+                <artifactId>doobie-contrib-postgresql_${scala.short.version}</artifactId>
+                <version>${doobie.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.tpolecat</groupId>
+                <artifactId>doobie-contrib-specs2_${scala.short.version}</artifactId>
+                <version>${doobie.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.scalaz.stream</groupId>
+                        <artifactId>scalaz-stream_${scala.short.version}</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.scalaz</groupId>
+                        <artifactId>scalaz-concurrent_${scala.short.version}</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.tpolecat</groupId>
+                <artifactId>doobie-contrib-hikari_${scala.short.version}</artifactId>
+                <version>${doobie.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.scalaz.stream</groupId>
+                        <artifactId>scalaz-stream_${scala.short.version}</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.scalaz</groupId>
+                        <artifactId>scalaz-concurrent_${scala.short.version}</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <!-- SCALAZ -->
+            <dependency>
+                <groupId>org.scalaz</groupId>
+                <artifactId>scalaz-core_${scala.short.version}</artifactId>
+                <version>${scalaz.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.scalaz</groupId>
+                <artifactId>scalaz-concurrent_${scala.short.version}</artifactId>
+                <version>${scalaz.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.scalaz</groupId>
+                <artifactId>scalaz-effect_${scala.short.version}</artifactId>
+                <version>${scalaz.version}</version>
+            </dependency>
+
+            <!-- SCALAZ.STREAM -->
+            <dependency>
+                <groupId>org.scalaz.stream</groupId>
+                <artifactId>scalaz-stream_${scala.short.version}</artifactId>
+                <version>${scalaz.stream.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.scala-lang</groupId>
+                        <artifactId>scala-library</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.scalaz</groupId>
+                        <artifactId>scalaz-effect_${scala.short.version}</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.scalaz</groupId>
+                        <artifactId>scalaz-core_${scala.short.version}</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.scalaz</groupId>
+                        <artifactId>scalaz-effect_${scala.short.version}</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <!-- SHAPELESS -->
+            <dependency>
+                <groupId>com.chuusai</groupId>
+                <artifactId>shapeless_${scala.short.version}</artifactId>
+                <version>${shapeless.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.typelevel</groupId>
+                        <artifactId>macro-compat_${scala.short.version}</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.typelevel</groupId>
+                <artifactId>macro-compat_${scala.short.version}</artifactId>
+                <version>1.1.1</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.scala-lang</groupId>
+                        <artifactId>scala-library</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <repositories>
+        <repository>
+            <id>oss-sonatype</id>
+            <name>oss-sonatype</name>
+            <url>https://oss.sonatype.org/content/repositories/releases</url>
+        </repository>
+        <repository>
+            <id>TypeSafeRepository</id>
+            <name>TypeSafe Repository</name>
+            <url>http://repo.typesafe.com/typesafe/releases</url>
+        </repository>
+        <repository>
+            <id>ScalaToolsMaven2Repository</id>
+            <name>Scala-Tools Maven2 Repository</name>
+            <url>http://scala-tools.org/repo-releases</url>
+        </repository>
+    </repositories>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.13</version>
+                <configuration>
+                    <useFile>false</useFile>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+
+                <version>3.2</version>
+
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.3.2</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.2</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>1.3.1</version>
+                <configuration>
+                    <rules>
+                        <DependencyConvergence/>
+                    </rules>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>enforce</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>oss-sonatype</id>
+            <name>oss-sonatype</name>
+            <url>https://oss.sonatype.org/content/repositories/releases</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>TypeSafeRepository</id>
+            <name>TypeSafe Repository</name>
+            <url>http://repo.typesafe.com/typesafe/releases</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>twttr</id>
+            <name>twttr</name>
+            <url>http://maven.twttr.com</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>scala-tools.org</id>
+            <name>Scala-tools Maven2 Repository</name>
+            <url>http://scala-tools.org/repo-releases</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+</project>
