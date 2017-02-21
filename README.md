@@ -1,24 +1,22 @@
-#doobie example project 
+#case classy example project 
 
-This project is to represent that intellij cannot infer the dynamic type from an implicit conversion in doobie. 
-See 
+This project is to test how case classy decodes recursive case classes
 
 ```/greylock-service/src/main/scala/com/abased/example/IntellijExample.scala```
-
-
-There are screenshots in 
-
-```/greylock-service/src/main/resources```
-
-Showing what is red 
 
 ##Build 
 
 from root 
 
-1 mvn clean install - proves this code compiles
+1 ``` mvn clean install - proves this code compiles ```
+
 2 wait for internets to download
-3 profit
+
+3 cd greylock-service 
+
+4 ``` mvn scala:console -DmainConsole=com.abased.example.IntellijExample -e ```
+
+
 
 
 
