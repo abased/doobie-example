@@ -12,7 +12,7 @@ from root
 
 2 wait for internets to download
 
-3 cd greylock-service 
+3 ``` cd greylock-service ```
 
 4 ``` mvn scala:console -DmainConsole=com.abased.example.IntellijExample -e ```
 
