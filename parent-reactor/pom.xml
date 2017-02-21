@@ -275,6 +275,24 @@
                 </exclusions>
             </dependency>
 
+
+            <!-- Case Classy -->
+            <dependency>
+                <groupId>com.fortysevendeg</groupId>
+                <artifactId>classy-core_2.11</artifactId>
+                <version>0.3.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fortysevendeg</groupId>
+                <artifactId>classy-config-typesafe_2.11</artifactId>
+                <version>0.3.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fortysevendeg</groupId>
+                <artifactId>classy-generic_2.11</artifactId>
+                <version>0.3.0</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -382,6 +400,38 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>scala-maven-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>testCompile</goal>
+                        </goals>
+                        <configuration>
+                            <args>
+                                <arg>-feature</arg>
+                                <arg>-deprecation</arg>
+                                <arg>-dependencyfile</arg>
+                                <arg>${project.build.directory}/.scala_dependencies</arg>
+                            </args>
+                            <scalaVersion>${scala.version}</scalaVersion>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <recompileMode>incremental</recompileMode>
+                    <jvmArgs>
+                        <jvmArg>-Xss2m</jvmArg>
+                    </jvmArgs>
+                    <recompileMode>incremental</recompileMode>
+                    <useZincServer>true</useZincServer>
+                    <analysisCacheFile>${project.build.directory}/analysis-cache-file</analysisCacheFile>
+                    <testAnalysisCacheFile>${project.build.directory}/test-analysis-cache-file</testAnalysisCacheFile>
+                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -78,6 +78,19 @@
             <artifactId>macro-compat_${scala.short.version}</artifactId>
         </dependency>
 
+        <!--Case Classy -->
+        <dependency>
+            <groupId>com.fortysevendeg</groupId>
+            <artifactId>classy-core_2.11</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fortysevendeg</groupId>
+            <artifactId>classy-config-typesafe_2.11</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fortysevendeg</groupId>
+            <artifactId>classy-generic_2.11</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
