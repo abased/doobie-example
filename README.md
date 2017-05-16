@@ -1,4 +1,4 @@
-#doobie example project 
+# Doobie example project 
 
 This project is to represent that intellij cannot infer the dynamic type from an implicit conversion in doobie. 
 
@@ -16,13 +16,13 @@ There are screenshots in
 
 Showing what is red 
 
-##Build 
+## Build 
 
 from root 
 
-1 mvn clean install - proves this code compiles
-2 wait for internets to download
-3 profit
+1. mvn clean install - proves this code compiles
+2. wait for internets to download
+3. profit
 
 
 
